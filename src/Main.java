@@ -18,18 +18,25 @@ public class Main {
         //
         File file = new File(fileName);
         FileInputStream fis = null;
-
         fis = new FileInputStream(file);
+        //create a char stream that reads from input
         ANTLRInputStream input = new ANTLRInputStream(fis);
+        //create a lexer that feeds off input CharStream
         JavaLexer lexer = new JavaLexer(input);
+        //create a buffer of tokens pulled from the lexer
         CommonTokenStream tokens = new CommonTokenStream(lexer);
+        //create a parser that fees of the token buffer
         JavaParser parser = new JavaParser(tokens);
+        //begin parsing at compilationUnit
         ParseTree tree = parser.compilationUnit();
+        // declare a rewriter to rewrite the input stream as required
         TokenStreamRewriter rewriter = new TokenStreamRewriter(tokens);
+        //creating object of the AddComments class
         AddComments ct = new AddComments(rewriter);
         // Use a ParseTreeWalker instance to walk the parse tree and apply the listener
         ParseTreeWalker walker = new ParseTreeWalker();
-        walker.walk(ct, tree);
+        //Walk the tree created during the parse, trigger callbacks
+        walker.walk(ct, tree); //to know how to traverse, pass the class to traverse with "JavaParserBaseListener" in this case
 //        ct.visit(tree);
 
         // Write the modified input to the output file
