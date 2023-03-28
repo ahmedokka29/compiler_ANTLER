@@ -1,0 +1,8 @@
+block number 1 is visited 
+block number 4 is visited 
+block number 5 is visited 
+block number 6 is visited 
+block number 6 is visited 
+block number 6 is visited 
+block number 7 is visited 
+block number 7 is visited 
