@@ -1,8 +1,19 @@
-block number 1 is visited 
-block number 4 is visited 
-block number 5 is visited 
-block number 6 is visited 
-block number 6 is visited 
-block number 6 is visited 
-block number 7 is visited 
-block number 7 is visited 
+1
+2
+3
+6
+6
+6
+7
+7
+7
+7
+7
+8
+8
+8
+8
+8
+9
+10
+12

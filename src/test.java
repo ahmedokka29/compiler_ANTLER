@@ -23,6 +23,9 @@ public class test extends JavaParserBaseVisitor<String> {
     public String visitMethodBody(JavaParser.MethodBodyContext ctx) {
         Token start = ctx.getStart();
         rewriter.insertBefore(start," throws IOException ");
+        rewriter.insertAfter(start, "\n     FileWriter writer = new FileWriter(\"./output.txt\");\n");
+        Token closeBrace = ctx.getStop();
+        rewriter.insertBefore(closeBrace, "writer.close();\n");
         return super.visitMethodBody(ctx);
     }
 
@@ -39,12 +42,12 @@ public class test extends JavaParserBaseVisitor<String> {
     public String visitBlock(JavaParser.BlockContext ctx) {
         Token openBrace = ctx.getStart();
         rewriter.insertAfter(openBrace, "// block number " + currentBlock+"\n");
-        if(currentBlock==1){
-            rewriter.insertAfter(openBrace, "       FileWriter writer = new FileWriter(\"output.txt\");\n");
-            Token closeBrace = ctx.getStop();
-            rewriter.insertBefore(closeBrace, "writer.close();\n");
-        }
-        rewriter.insertAfter(openBrace,"        writer.write(\"block number \" +" + currentBlock+"+\" is visited \\n\");\n");
+//        if(currentBlock==1){
+//            rewriter.insertAfter(openBrace, "       FileWriter writer = new FileWriter(\"output.txt\");\n");
+//            Token closeBrace = ctx.getStop();
+//            rewriter.insertBefore(closeBrace, "writer.close();\n");
+//        }
+        rewriter.insertAfter(openBrace,"        writer.write(\""+currentBlock+"\\n\");\n");
         currentBlock++;
 
         return super.visitBlock(ctx);
