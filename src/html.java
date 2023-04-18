@@ -12,7 +12,9 @@ public class html extends JavaParserBaseVisitor<String>{
     ArrayList<Integer> blocks;
     public html(TokenStreamRewriter rewriter , ArrayList<Integer> blocks) {
         this.rewriter = rewriter;
-        rewriter.insertBefore(0, "<html> <style>.green {background-color: #22C55E} .red{background-color: #EF4444} .orange{background-color: #FFF82A}</style><body class=green><pre>");
+        rewriter.insertBefore(0, "<html> <style>.green {background-color: #00EE7E} " +
+                ".red{background-color:#FF4A4A} .orange{background-color:orange}</style>" +
+                "<body class=green><pre>");
         this.blocks = blocks;
     }
 

@@ -293,3 +293,4 @@ out/production/compiler_ANTLER/JavaLexer.g4
 out/production/compiler_ANTLER/JavaLexer.class
 out/production/compiler_ANTLER/input.class
 out/production/compiler_ANTLER/blocks.class
+out/production/compiler_ANTLER/html.class
