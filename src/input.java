@@ -11,7 +11,7 @@ public class input {
         }
         if(x==5 || x==8 ){
             System.out.println("block");
-        }
+        }else System.out.println("ff");
 
         if(x==5) System.out.println("done");
 

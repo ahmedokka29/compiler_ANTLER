@@ -2,15 +2,20 @@ import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
+
+import java.awt.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
 import java.io.FileInputStream;
 public class Main {
+
     public static void main(String[] args) throws IOException {
 //        System.out.print("Enter java file path: ");
 //        Scanner sc = new Scanner(System.in);
@@ -64,7 +69,49 @@ public class Main {
         }
         System.out.println("run output.java");
 
+        ArrayList<Integer> list = new ArrayList<Integer>();
 
+        File myObj = new File("output.txt");
+        Scanner myReader = new Scanner(myObj);
+        while (myReader.hasNextLine()) {
+            String data = myReader.nextLine();
+            list.add(Integer.valueOf(data));
+        }
+        myReader.close();
+        System.out.println(list);
+
+//        fileRead("D:\\Ahmed\\Ahmed_Gam3a\\4th_Computer\\2nd Term\\compiler section\\project\\output.txt");
+
+        String fileName3 = "D:\\Ahmed\\GitHub projects\\compiler_ANTLER\\blocksResult.java";
+        File file3 = new File(fileName3);
+        FileInputStream fis3 = null;
+
+        fis3 = new FileInputStream(file3);
+        ANTLRInputStream input3 = new ANTLRInputStream(fis3);
+        JavaLexer lexer3 = new JavaLexer(input3);
+        CommonTokenStream tokens3 = new CommonTokenStream(lexer3);
+        JavaParser parser3 = new JavaParser(tokens3);
+        ParseTree tree3 = parser3.compilationUnit();
+        TokenStreamRewriter rewriter3 = new TokenStreamRewriter(tokens3);
+        //swap > < with "&lt and &gt" in html file
+        for (int i = 0; i < tokens3.getTokens().size(); i++) {
+            Token token3 = tokens3.getTokens().get(i);
+            if (token3.getText().equals( "<")) {
+                rewriter3.replace(token3, "&lt;");
+            } else if (token3.getText().equals(">")) {
+                rewriter3.replace(token3, "&gt;");
+            }
+        }
+        html htmlExtractor = new html(rewriter3,list);
+        htmlExtractor.visit(tree3);
+        // Write the modified input to the output file
+        FileWriter writer3 = new FileWriter("D:\\Ahmed\\GitHub projects\\compiler_ANTLER\\d3.html");
+
+        writer3.write(htmlExtractor.result());
+        writer3.close();
+        // running the generated html file automatically using the desired browser
+        File htmlFile = new File("D:\\Ahmed\\GitHub projects\\compiler_ANTLER\\d3.html");
+        Desktop.getDesktop().browse(htmlFile.toURI());
 
 
     }

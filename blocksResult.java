@@ -11,9 +11,10 @@ public class input {
         }
         if(x==5 || x==8 ){
             System.out.println("block");
-        }
+        }else {System.out.println("ff");}
 
-        if(x==5) {System.out.println("done");}
+        if(x==5) {System.out.println("done");	
+}
 
         while (x>0){
             System.out.println("block");
@@ -25,7 +26,8 @@ public class input {
             System.out.println("block");
 
         }
-        for(int i = 0;i < y;i++) {System.out.println("say hi");}
+        for(int i = 0;i < y;i++) {System.out.println("say hi");	
+}
 
         x = 3;
         int z = 4;
