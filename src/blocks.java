@@ -20,7 +20,7 @@ public class blocks extends JavaParserBaseVisitor<String>{
 
             if (ctx.statement(0).getText().charAt(0) != '{') {
                 rewriter.insertBefore(ctx.statement(0).getStart(), "{");
-                rewriter.insertAfter(ctx.getStop(), "}");
+                rewriter.insertAfter(ctx.getStop(), "\t\n}");
             }
         }
 
