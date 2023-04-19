@@ -18,15 +18,7 @@ public class html extends JavaParserBaseVisitor<String>{
         this.blocks = blocks;
     }
 
-    @Override
-    public String visitVariableDeclarator(JavaParser.VariableDeclaratorContext ctx) {
-
-        String varName = ctx.variableDeclaratorId().getText();
-        Integer value = Integer.valueOf(ctx.variableInitializer().getText());
-        var.put(varName,value);
-
-        return super.visitVariableDeclarator(ctx);
-    }
+    
 
 
     @Override
@@ -54,6 +46,16 @@ public class html extends JavaParserBaseVisitor<String>{
             }
         }
         return super.visitParExpression(ctx);
+    }
+    
+    @Override
+    public String visitVariableDeclarator(JavaParser.VariableDeclaratorContext ctx) {
+
+        String varName = ctx.variableDeclaratorId().getText();
+        Integer value = Integer.valueOf(ctx.variableInitializer().getText());
+        var.put(varName,value);
+
+        return super.visitVariableDeclarator(ctx);
     }
 
     @Override
