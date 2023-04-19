@@ -1,0 +1,11 @@
+public class Input {
+    boolean x = true;
+    boolean z = true;
+    public static void main(String[] args) {
+        if( x == true ) {
+            if (z  == false){
+                print();
+            }
+        }
+    }
+}
